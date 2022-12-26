@@ -35,7 +35,7 @@ if uploaded_file is not None:
                 gray_scale = cv2.cvtColor(converted_img, cv2.COLOR_RGB2GRAY)
                 st.image(gray_scale, width=300)
                 fn = 'grayscale.png'
-                cv2.imwrite(fn)
+                cv2.imwrite(fn,gray_scale)
                 with open(fn, "rb") as img:
                     btn = st.download_button(
                         label="Download image",
