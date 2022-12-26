@@ -34,11 +34,12 @@ if uploaded_file is not None:
                 converted_img = np.array(image.convert('RGB'))
                 gray_scale = cv2.cvtColor(converted_img, cv2.COLOR_RGB2GRAY)
                 st.image(gray_scale, width=300)
-                st.download_button(
-                    label="Download image",
-                    data=gray_scale,
-                    file_name="GrayScale.png"
-                )
+                with open(gray_scale,'rb') as file:
+                    st.download_button(
+                        label="Download image",
+                        data=gray_scale,
+                        file_name="GrayScale.png"
+                    )
      
         elif filter == 'Black and White':
                 converted_img = np.array(image.convert('RGB'))
