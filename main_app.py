@@ -50,10 +50,15 @@ if uploaded_file is not None:
                 slider = st.sidebar.slider('Adjust the intensity', 1, 255, 127, step=1)
                 (thresh, blackAndWhiteImage) = cv2.threshold(gray_scale, slider, 255, cv2.THRESH_BINARY)
                 st.image(blackAndWhiteImage, width=300)
-                save = st.radio("Do you want to save this Image?",("False","True"))
-                if save =='True':
-                    cv2.imwrite('BlackandWhiteImage.png',blackAndWhiteImage)
-                    st.text("File Saved")
+                fn = 'BlackandWhite.png'
+                cv2.imwrite(fn,blackAndWhiteImage)
+                with open(fn, "rb") as img:
+                    btn = st.download_button(
+                        label="Download image",
+                        data=img,
+                        file_name=fn,
+                        mime="image/png"
+                    )
      
         elif filter == 'Blur Effect':
                 converted_img = np.array(image.convert('RGB'))
@@ -61,10 +66,15 @@ if uploaded_file is not None:
                 converted_img = cv2.cvtColor(converted_img, cv2.COLOR_RGB2BGR)
                 blur_image = cv2.GaussianBlur(converted_img, (slider,slider), 0, 0)
                 st.image(blur_image, channels='BGR', width=300) 
-                save = st.radio("Do you want to save this Image?",("False","True"))
-                if save =='True':
-                    cv2.imwrite('BlurImage.png',blur_image)
-                    st.text("File Saved")
+                fn = 'BlurImage.png'
+                cv2.imwrite(fn,blur_image)
+                with open(fn, "rb") as img:
+                    btn = st.download_button(
+                        label="Download image",
+                        data=img,
+                        file_name=fn,
+                        mime="image/png"
+                    )
      
      
         elif filter == 'Add Tone':
@@ -92,10 +102,15 @@ if uploaded_file is not None:
                 background = np.array(background).astype(np.uint8)
                 final = cv2.addWeighted(converted_img, a , background, b , 0)
                 st.image(final, channels='BGR', width=300) 
-                save = st.radio("Do you want to save this Image?",("False","True"))
-                if save =='True':
-                    cv2.imwrite('TonedImage.png',final)
-                    st.text("File Saved")
+                fn = 'TonedImage.png'
+                cv2.imwrite(fn,final)
+                with open(fn, "rb") as img:
+                    btn = st.download_button(
+                        label="Download image",
+                        data=img,
+                        file_name=fn,
+                        mime="image/png"
+                    )
                 
                 
         elif filter == 'Warm Tone':
@@ -120,10 +135,15 @@ if uploaded_file is not None:
                 merged = cv2.addWeighted(converted_img, a, background, b, 0)
 
                 st.image(merged, channels='BGR', width=300)
-                save = st.radio("Do you want to save this Image?",("False","True"))
-                if save =='True':
-                    cv2.imwrite('WarmTonedImage.png',merged)
-                    st.text("File Saved")
+                fn = 'WarmToned.png'
+                cv2.imwrite(fn,merged)
+                with open(fn, "rb") as img:
+                    btn = st.download_button(
+                        label="Download image",
+                        data=img,
+                        file_name=fn,
+                        mime="image/png"
+                    )
             
         elif filter == 'Cool Tone':
                 converted_img = np.array(image.convert('RGB'))
@@ -147,10 +167,15 @@ if uploaded_file is not None:
                 merged = cv2.addWeighted(converted_img, a, background, b, 0)
 
                 st.image(merged, channels='BGR', width=300)
-                save = st.radio("Do you want to save this Image?",("False","True"))
-                if save =='True':
-                    cv2.imwrite('CoolTonedImage.png',merged)
-                    st.text("File Saved")
+                fn = 'CoolToned.png'
+                cv2.imwrite(fn,merged)
+                with open(fn, "rb") as img:
+                    btn = st.download_button(
+                        label="Download image",
+                        data=img,
+                        file_name=fn,
+                        mime="image/png"
+                    )
             
             
         
